@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :pictures do 
+  resources :pictures, except: [:destroy] do 
     resources :votes, only: [:create, :update, :destroy]
     resources :saved_pictures, only: [:new, :create]
   end
