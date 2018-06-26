@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bacheca:</strong>
+  <%= @board.name %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Immagini</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @saved_pictures.each do |sp| %>
+        <tr>
+          <td> <img src='<%= sp.picture.url %>' height="150"> </td>
+          <td> <%= sp.picture.name %> </td>
+          <td> <%= sp.description %> </td>
+          <td><%= link_to 'Mostra', picture_path(sp.picture.id) %></td>
+          <td><%= link_to 'Cancella dalla bacheca', user_board_saved_picture_path(current_user, @board, sp), method: :delete, data: { confirm: 'Sei sicuro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<%= link_to 'Modifica Bacheca', edit_user_board_path(current_user, @board) %> |
+<%= link_to 'Le Mie Bacheche', user_boards_path(current_user) %>

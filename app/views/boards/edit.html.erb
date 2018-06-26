@@ -1,0 +1,18 @@
+<h1>Modifica bacheca</h1>
+
+<%= form_for(@board, url: user_board_path(current_user)) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :board_name %>
+  </div>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Vai alla bacheca', user_board_path(current_user, @board) %> |
+<%= link_to 'Indietro', user_boards_path(current_user) %>

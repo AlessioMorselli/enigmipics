@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @saved_picture.description %>
+</p>
+
+<%= link_to 'Edit', edit_saved_picture_path(@saved_picture) %> |
+<%= link_to 'Back', saved_pictures_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Benvenuto </strong>
+  <%= current_user.username %>
+</p>
+
+<p>
+
+<p> <%= link_to 'Naviga tra le immagini', pictures_path %>
+
+</p>
+  <%= link_to 'Le mie bacheche', user_boards_path(current_user) %> |
+  <%= link_to 'Le mie immagini', user_pictures_path(current_user) %> |
+  <%= link_to 'Condividi una nuova immagine', new_picture_path %>
+<p>
+  <%= link_to 'Modifica profilo', edit_user_path(current_user) %> |
+  <%= link_to 'Esci', logout_path, method: :delete %>
+</p>

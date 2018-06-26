@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<img src="<%= @picture.url %>" style='max-height: 500px; max-length: 1000px'>
+
+<p>
+  <strong>Name:</strong>
+  <%= @picture.name %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @picture.url %>
+</p>
+
+<p> Immagine già salvata in <%= @picture.boards.count %> bacheche </p>
+<p> Voti totali: <%= @votes.count %> <% if @votes.count > 0 %>| Voto medio: <%= (@votes.sum(:stars).to_f / @votes.count).round(1) %> stelle <% end %> </p>
+
+<div>
+  <% if !@user_vote.nil? %>
+    <p> Il tuo voto: <%= @user_vote.stars %>  | 
+    <%= link_to 'Cancella voto', picture_vote_path(@picture, @user_vote), method: :delete %> </p>
+  <% end %>
+
+  <% if @user_vote.nil? %>
+    <%= form_for(:vote, url: picture_votes_path(@picture) ) do |form| %>
+
+      <div class="field">
+        <%= form.label :stars, class: :label %>
+        <div class="control">
+          <div class="select">
+            <%= form.select :stars, (0..5) %>
+          </div>
+        </div>
+      </div>
+
+      <%= form.hidden_field :picture_id, value: @picture.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <%= form.submit "Vota", class: "btn btn-primary" %>
+
+    <% end %>
+  <% else %>
+    <%= form_for(@user_vote, url: picture_vote_path(@picture, @user_vote) ) do |form| %>
+
+      <div class="field">
+        <%= form.label :stars, class: :label %>
+        <div class="control">
+          <div class="select">
+            <%= form.select :stars, (0..5) %>
+          </div>
+        </div>
+      </div>
+
+      <%= form.hidden_field :picture_id, value: @picture.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <%= form.submit "Cambia voto", class: "btn btn-primary" %>
+
+    <% end %>
+  <% end %>
+</div>
+
+<p>
+  <% if !current_user.in?(@picture.users) %>
+    <%= link_to 'Salva', new_picture_saved_picture_path(@picture) %> |
+  <% else %>
+    <% board = @picture.boards.find_by(user_id: current_user.id) %>
+    <%= link_to 'Già salvata', user_board_path(current_user, board) %> |
+  <% end %>
+  <%= link_to 'Tutte le immagini', pictures_path %>
+</p>

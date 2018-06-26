@@ -1,0 +1,27 @@
+<h1>Salva in una bacheca</h1>
+
+<%= form_for(:saved_picture, url: picture_saved_pictures_path(@picture)) do |form| %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :saved_picture_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :board_id, 'Bacheca' %>
+    <div class="control">
+      <div class="select">
+        <%= form.collection_select :board_id, current_user.boards, :id, :name %><br />
+      </div>
+    </div>
+  </div>
+
+  <%= form.hidden_field :picture_id, value: @picture.id %>
+
+  <div class="actions">
+    <%= form.submit "Salva"%>
+  </div>
+<% end %>
+
+
+<%= link_to 'Tutte le immagini', pictures_path %>

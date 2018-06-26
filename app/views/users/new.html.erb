@@ -1,0 +1,17 @@
+<h1>Nuovo Utente</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:user, url: register_path) do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Registrati", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>Già registrato? <%= link_to "Accedi subito!", login_path %></p>
+  </div>
+</div>

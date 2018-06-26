@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Immagini</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Immagine</th>
+      <th>Nome</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td style='text-align: center'><img src='<%= picture.url %>' height = 150></td>
+        <td><%= picture.name %></td>
+        <td><%= link_to 'Mostra', picture %></td>
+        <%if @uploaded %>
+          <td><%= link_to 'Modifica', edit_picture_path(picture) %></td>
+          <td><%= link_to 'Elimina', picture, method: :delete, data: { confirm: 'Sei sicuro?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%if @uploaded %>
+  <%= link_to 'Condividi una nuova immagine', new_picture_path %>
+<% end %>

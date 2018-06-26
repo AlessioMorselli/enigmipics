@@ -1,0 +1,9 @@
+<h1>Modifica Immagine</h1>
+
+<%= render 'form', picture: @picture %>
+
+<p>
+    <%= link_to 'Mostra', @picture %> |
+    <%= link_to 'Tutte le immagini', pictures_path %> |
+    <%= link_to 'Le mie immagini', user_pictures_path(current_user) %>
+</p>
