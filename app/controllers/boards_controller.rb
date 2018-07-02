@@ -44,6 +44,9 @@ class BoardsController < ApplicationController
 
   # DELETE /users/1/boards/1
   def destroy
+    @board.saved_pictures.each do |sp|
+      sp.destroy
+    end
     @board.destroy
 
     redirect_to user_boards_path(current_user)
