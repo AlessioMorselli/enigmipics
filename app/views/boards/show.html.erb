@@ -15,7 +15,7 @@
     <tbody>
       <% @saved_pictures.each do |sp| %>
         <tr>
-          <td> <img src='<%= sp.picture.url %>' height="150"> </td>
+          <td style='text-align: center'> <img src='<%= sp.picture.url %>' height="150"> </td>
           <td> <%= sp.picture.name %> </td>
           <td> <%= sp.description %> </td>
           <td><%= link_to 'Mostra', picture_path(sp.picture.id) %></td>

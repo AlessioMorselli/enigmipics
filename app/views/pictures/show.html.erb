@@ -12,7 +12,13 @@
   <%= @picture.url %>
 </p>
 
-<p> Immagine già salvata in <%= @picture.boards.count %> bacheche </p>
+<% n_bacheche = @picture.boards.count %>
+<p> Immagine già salvata in <%= n_bacheche %> 
+  <% if n_bacheche == 1 %>
+    bacheca
+  <% else %>
+    bacheche
+  <% end %> </p>
 <p> Voti totali: <%= @votes.count %> <% if @votes.count > 0 %>| Voto medio: <%= (@votes.sum(:stars).to_f / @votes.count).round(1) %> stelle <% end %> </p>
 
 <div>

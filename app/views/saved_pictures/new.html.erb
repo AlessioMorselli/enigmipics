@@ -3,7 +3,7 @@
 <%= form_for(:saved_picture, url: picture_saved_pictures_path(@picture)) do |form| %>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, 'Descrizione' %>
     <%= form.text_field :description, id: :saved_picture_description %>
   </div>
 
